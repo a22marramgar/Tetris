@@ -14,7 +14,7 @@ public class ControlPieza {
 		case 2:// PiezaO
 			Pieza[3][0] = 2;
 			Pieza[3][1] = 2;
-			Pieza[2][0] = 2;
+			Pieza[2][0] = 2; 
 			Pieza[2][1] = 2;
 			break;
 		case 3:// PiezaS
@@ -58,33 +58,14 @@ public class ControlPieza {
 		Scanner scan = new Scanner(System.in);
 		boolean lanzar = false;
 		while (!lanzar) {
-			boolean imposible = false;
 			Main.MostrarTaulell(Pieza);
 			System.out.println("a: moure esquerra, d: moure dreta, s: llençar peça");
 			switch(scan.nextLine().toLowerCase()) {
 				case "a":
-					for (int i = 0; i < Pieza[0].length&&!imposible; i++) {
-						for (int j = 0; j < Pieza.length&&!imposible; j++) {
-							if(Pieza[j][i]!=0&&i>0) {
-								Pieza[j][i-1] = Pieza[j][i];
-								Pieza[j][i] = 0;
-							}else if(Pieza[j][i]!=0&&i==0) {
-								imposible = true;
-							}
-						}
-					}
+					Pieza = MoureEsquerra(Pieza);
 					break;
 				case "d":
-					for (int i = Pieza[0].length-1; i >= 0&&!imposible; i--) {
-						for (int j = 0; j <Pieza.length&&!imposible; j++) {
-							if(Pieza[j][i]!=0&&i<Pieza[0].length-1) {
-								Pieza[j][i+1] = Pieza[j][i];
-								Pieza[j][i] = 0;
-							}else if(Pieza[j][i]!=0&&i==Pieza[0].length-1) {
-								imposible = true;
-							}
-						}
-					}
+					Pieza = MoureDreta(Pieza);
 					break;
 				case "s":
 					lanzar = true;
@@ -95,6 +76,35 @@ public class ControlPieza {
 		}
 		return Pieza;
 	}
+	public static int[][] MoureEsquerra(int[][] Pieza){
+		boolean imposible = false;
+		for (int i = 0; i < Pieza[0].length&&!imposible; i++) {
+			for (int j = 0; j < Pieza.length&&!imposible; j++) {
+				if(Pieza[j][i]!=0&&i>0) {
+					Pieza[j][i-1] = Pieza[j][i];
+					Pieza[j][i] = 0;
+				}else if(Pieza[j][i]!=0&&i==0) {
+					imposible = true;
+				}
+			}
+		}
+		return Pieza;
+	}
+	public static int[][] MoureDreta(int[][] Pieza){
+		boolean imposible = false;
+		for (int i = Pieza[0].length-1; i >= 0&&!imposible; i--) {
+			for (int j = 0; j <Pieza.length&&!imposible; j++) {
+				if(Pieza[j][i]!=0&&i<Pieza[0].length-1) {
+					Pieza[j][i+1] = Pieza[j][i];
+					Pieza[j][i] = 0;
+				}else if(Pieza[j][i]!=0&&i==Pieza[0].length-1) {
+					imposible = true;
+				}
+			}
+		}
+		return Pieza;
+	}
+	
 	public static int[][] FerCaureLaPieza(int[][] Pieza, int[][] Taulell){
 		
 		return Taulell;
