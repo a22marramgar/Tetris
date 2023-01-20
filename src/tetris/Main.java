@@ -67,6 +67,8 @@ public class Main {
 			ControlPieza.MourePiezaCostats(Pieza);
 			ControlPieza.FerCaureLaPieza(Pieza, Taulell);
 			MostrarTaulell(Taulell);
+			System.out.println("--------------");
+
 		}
 	}
 }

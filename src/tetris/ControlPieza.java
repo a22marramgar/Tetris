@@ -117,8 +117,37 @@ public class ControlPieza {
 			}
 		}
 	}
-
 	public static boolean PonerPieza(int[][] Pieza, int[][] Taulell) {
+		int alturaPieza = Taulell.length;
+		boolean posible = true;
+		for (int i = Pieza.length-1; i >=0; i--) {
+			for (int j = 0; j < Pieza[0].length; j++) {
+				if (Pieza[i][j] != 0) {
+					for(int k = 0; k<Taulell.length;k++) {
+						if(Taulell.length-k>=0&&Taulell[Taulell.length-1-k][j]==0
+								&&(k==0||Taulell[Taulell.length-k][j]!=0)) {
+							alturaPieza=Math.min(alturaPieza, Taulell.length-k);
+						}
+					}
+				}
+			}
+		}
+		for (int i = Pieza.length-1; i >=0; i--) {
+			for (int j = 0; j < Pieza[0].length; j++) {
+				if (Pieza[i][j] != 0) {
+					if (Taulell[alturaPieza+i-4][j] == 0) {
+						Taulell[alturaPieza+i-4][j] = Pieza[i][j];
+					} else {
+						posible = false;
+					}
+				}
+			}
+		}
+		return posible;
+	}
+
+	
+	/*public static boolean PonerPieza(int[][] Pieza, int[][] Taulell) {
 		int alturaPieza = 3;
 		boolean posible = true;
 		for (int i = 0; i < Pieza.length; i++) {
@@ -134,7 +163,7 @@ public class ControlPieza {
 			}
 		}
 		return posible;
-	}
+	}*/
 
 	public static void BajarPieza(int[][] Taulell) {
 		
@@ -148,4 +177,3 @@ public class ControlPieza {
 		return Taulell;
 	}
 }
-
