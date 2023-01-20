@@ -119,7 +119,7 @@ public class ControlPieza {
 	}
 	public static boolean PonerPieza(int[][] Pieza, int[][] Taulell) {
 		int alturaPieza = Taulell.length;
-		boolean posible = true;
+		boolean imposible = false;
 		for (int i = Pieza.length-1; i >=0; i--) {
 			for (int j = 0; j < Pieza[0].length; j++) {
 				if (Pieza[i][j] != 0) {
@@ -132,18 +132,19 @@ public class ControlPieza {
 				}
 			}
 		}
-		for (int i = Pieza.length-1; i >=0; i--) {
-			for (int j = 0; j < Pieza[0].length; j++) {
+		for (int i = Pieza.length-1; i >=0&&!imposible; i--) {
+			for (int j = 0; j < Pieza[0].length&&!imposible; j++) {
 				if (Pieza[i][j] != 0) {
-					if (Taulell[alturaPieza+i-4][j] == 0) {
+					if (alturaPieza+i-4>=0&&Taulell[alturaPieza+i-4][j] == 0
+							&&Taulell[alturaPieza+i-3][j] != 0) {
 						Taulell[alturaPieza+i-4][j] = Pieza[i][j];
 					} else {
-						posible = false;
+						imposible = true;
 					}
 				}
 			}
 		}
-		return posible;
+		return imposible;
 	}
 
 	
@@ -169,11 +170,9 @@ public class ControlPieza {
 		
 	}
 
-	public static int[][] FerCaureLaPieza(int[][] Pieza, int[][] Taulell) {
-		boolean posible = PonerPieza(Pieza, Taulell);
-		if(posible) {
-			BajarPieza(Taulell);
-		}
-		return Taulell;
+	public static boolean FerCaureLaPieza(int[][] Pieza, int[][] Taulell) {
+		boolean imposible = PonerPieza(Pieza, Taulell);
+		
+		return imposible;
 	}
 }

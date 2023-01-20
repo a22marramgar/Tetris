@@ -65,10 +65,11 @@ public class Main {
 			int[][] Pieza = new int[4][amplada];
 			ControlPieza.NovaPieza(Pieza);
 			ControlPieza.MourePiezaCostats(Pieza);
-			ControlPieza.FerCaureLaPieza(Pieza, Taulell);
+			finalPartida = ControlPieza.FerCaureLaPieza(Pieza, Taulell);
 			MostrarTaulell(Taulell);
 			System.out.println("--------------");
 
 		}
+		System.out.println("Fi de la partida");
 	}
 }
