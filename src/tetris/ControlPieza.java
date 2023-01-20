@@ -135,8 +135,7 @@ public class ControlPieza {
 		for (int i = Pieza.length-1; i >=0&&!imposible; i--) {
 			for (int j = 0; j < Pieza[0].length&&!imposible; j++) {
 				if (Pieza[i][j] != 0) {
-					if (alturaPieza+i-4>=0&&Taulell[alturaPieza+i-4][j] == 0
-							&&Taulell[alturaPieza+i-3][j] != 0) {
+					if (alturaPieza+i-4>=0&&Taulell[alturaPieza+i-4][j] == 0) {
 						Taulell[alturaPieza+i-4][j] = Pieza[i][j];
 					} else {
 						imposible = true;
