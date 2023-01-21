@@ -57,17 +57,18 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Introdueix l'amplada del taulell: ");
 		int amplada = scan.nextInt();
-		System.out.println("Introdueix l'alçada del taulell: ");
+		System.out.println("Introdueix l'alcada del taulell: ");
 		int alcada = scan.nextInt();
 		int[][] Taulell = new int[alcada][amplada];
 		boolean finalPartida = false;
 		while (!finalPartida) {
+                        MostrarTaulell(Taulell);
+                        System.out.println("--------------");
 			int[][] Pieza = new int[4][amplada];
 			ControlPieza.NovaPieza(Pieza);
-			ControlPieza.MourePiezaCostats(Pieza);
+			ControlPieza.MourePiezaCostats(Pieza,Taulell);
 			finalPartida = ControlPieza.FerCaureLaPieza(Pieza, Taulell);
-			MostrarTaulell(Taulell);
-			System.out.println("--------------");
+			ControlPieza.EliminarFila(Taulell, amplada, alcada);
 
 		}
 		System.out.println("Fi de la partida");

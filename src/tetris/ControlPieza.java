@@ -54,15 +54,16 @@ public class ControlPieza {
 		return Pieza;
 	}
 
-	public static int[][] MourePiezaCostats(int[][] Pieza) {
+	public static int[][] MourePiezaCostats(int[][] Pieza,int [][] Taulell) {
 		Scanner scan = new Scanner(System.in);
 		boolean lanzar = false;
 		while (!lanzar) {
 			Main.MostrarTaulell(Pieza);
-			System.out.println("a: moure esquerra, d: moure dreta, s: llençar peça");
+			System.out.println("a: moure esquerra, d: moure dreta, s: llencar peca");
 			switch (scan.nextLine().toLowerCase()) {
 			case "a":
 				Pieza = MoureEsquerra(Pieza);
+                                
 				break;
 			case "d":
 				Pieza = MoureDreta(Pieza);
@@ -73,6 +74,9 @@ public class ControlPieza {
 			default:
 				break;
 			}
+                        //imprimir taulell per a cada moviment
+                        Main.MostrarTaulell(Taulell);
+                        System.out.println("--------------");
 		}
 		return Pieza;
 	}
@@ -106,6 +110,32 @@ public class ControlPieza {
 		}
 		return Pieza;
 	}
+        
+        public static void EliminarFila(int [][]Taulell,int amplada,int alcada){
+            int contador=0;
+            
+            for(int i=0;i<alcada;i++){
+                
+                for(int j=0;j<amplada;j++){
+                    
+                    if(Taulell[i][j]!=0){
+                        contador++;
+                    }else{
+                        i++;
+                    }
+                }
+                if(contador==amplada){
+                    for(int j=0;j<amplada;j++){
+                        Taulell[i][j]=0;
+                    }
+                    ActualitzarTaulell(Taulell);
+                }
+                contador=0;
+            }
+            
+            
+                    
+        }
 
 	public static void ActualitzarTaulell(int[][] Taulell) {
 		for (int j = Taulell.length - 2; j >= 0; j--) {
