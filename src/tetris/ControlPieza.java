@@ -54,7 +54,7 @@ public class ControlPieza {
 		return Pieza;
 	}
 
-	public static int[][] MourePiezaCostats(int[][] Pieza,int [][] Taulell) {
+	public static int[][] MourePiezaCostats(int[][] Pieza, int[][] Taulell) {
 		Scanner scan = new Scanner(System.in);
 		boolean lanzar = false;
 		while (!lanzar) {
@@ -63,7 +63,7 @@ public class ControlPieza {
 			switch (scan.nextLine().toLowerCase()) {
 			case "a":
 				Pieza = MoureEsquerra(Pieza);
-                                
+
 				break;
 			case "d":
 				Pieza = MoureDreta(Pieza);
@@ -74,9 +74,9 @@ public class ControlPieza {
 			default:
 				break;
 			}
-                        //imprimir taulell per a cada moviment
-                        Main.MostrarTaulell(Taulell);
-                        System.out.println("--------------");
+			// imprimir taulell per a cada moviment
+			Main.MostrarTaulell(Taulell);
+			System.out.println("--------------");
 		}
 		return Pieza;
 	}
@@ -110,32 +110,30 @@ public class ControlPieza {
 		}
 		return Pieza;
 	}
-        
-        public static void EliminarFila(int [][]Taulell,int amplada,int alcada){
-            int contador=0;
-            
-            for(int i=0;i<alcada;i++){
-                
-                for(int j=0;j<amplada;j++){
-                    
-                    if(Taulell[i][j]!=0){
-                        contador++;
-                    }else{
-                        i++;
-                    }
-                }
-                if(contador==amplada){
-                    for(int j=0;j<amplada;j++){
-                        Taulell[i][j]=0;
-                    }
-                    ActualitzarTaulell(Taulell);
-                }
-                contador=0;
-            }
-            
-            
-                    
-        }
+
+	public static void EliminarFila(int[][] Taulell, int amplada, int alcada) {
+		int contador = 0;
+
+		for (int i = 0; i < alcada; i++) {
+
+			for (int j = 0; j < amplada; j++) {
+
+				if (Taulell[i][j] != 0) {
+					contador++;
+				} else {
+					i++;
+				}
+			}
+			if (contador == amplada) {
+				for (int j = 0; j < amplada; j++) {
+					Taulell[i][j] = 0;
+				}
+				ActualitzarTaulell(Taulell);
+			}
+			contador = 0;
+		}
+
+	}
 
 	public static void ActualitzarTaulell(int[][] Taulell) {
 		for (int j = Taulell.length - 2; j >= 0; j--) {
@@ -147,26 +145,27 @@ public class ControlPieza {
 			}
 		}
 	}
+
 	public static boolean PonerPieza(int[][] Pieza, int[][] Taulell) {
 		int alturaPieza = Taulell.length;
 		boolean imposible = false;
-		for (int i = Pieza.length-1; i >=0; i--) {
+		for (int i = Pieza.length - 1; i >= 0; i--) {
 			for (int j = 0; j < Pieza[0].length; j++) {
 				if (Pieza[i][j] != 0) {
-					for(int k = 0; k<Taulell.length;k++) {
-						if(Taulell.length-k>=0&&Taulell[Taulell.length-1-k][j]==0
-								&&(k==0||Taulell[Taulell.length-k][j]!=0)) {
-							alturaPieza=Math.min(alturaPieza, Taulell.length-k);
+					for (int k = 0; k < Taulell.length; k++) {
+						if (Taulell.length - k >= 0 && Taulell[Taulell.length - 1 - k][j] == 0
+								&& (k == 0 || Taulell[Taulell.length - k][j] != 0)) {
+							alturaPieza = Math.min(alturaPieza, Taulell.length - k);
 						}
 					}
 				}
 			}
 		}
-		for (int i = Pieza.length-1; i >=0&&!imposible; i--) {
-			for (int j = 0; j < Pieza[0].length&&!imposible; j++) {
+		for (int i = Pieza.length - 1; i >= 0 && !imposible; i--) {
+			for (int j = 0; j < Pieza[0].length && !imposible; j++) {
 				if (Pieza[i][j] != 0) {
-					if (alturaPieza+i-4>=0&&Taulell[alturaPieza+i-4][j] == 0) {
-						Taulell[alturaPieza+i-4][j] = Pieza[i][j];
+					if (alturaPieza + i - 4 >= 0 && Taulell[alturaPieza + i - 4][j] == 0) {
+						Taulell[alturaPieza + i - 4][j] = Pieza[i][j];
 					} else {
 						imposible = true;
 					}
@@ -176,32 +175,22 @@ public class ControlPieza {
 		return imposible;
 	}
 
-	
-	/*public static boolean PonerPieza(int[][] Pieza, int[][] Taulell) {
-		int alturaPieza = 3;
-		boolean posible = true;
-		for (int i = 0; i < Pieza.length; i++) {
-			for (int j = 0; j < Pieza[0].length; j++) {
-				if (Pieza[i][j] != 0) {
-					alturaPieza = Math.min(alturaPieza, i);
-					if (Taulell[i - alturaPieza][j] == 0) {
-						Taulell[i - alturaPieza][j] = Pieza[i][j];
-					} else {
-						posible = false;
-					}
-				}
-			}
-		}
-		return posible;
-	}*/
+	/*
+	 * public static boolean PonerPieza(int[][] Pieza, int[][] Taulell) { int
+	 * alturaPieza = 3; boolean posible = true; for (int i = 0; i < Pieza.length;
+	 * i++) { for (int j = 0; j < Pieza[0].length; j++) { if (Pieza[i][j] != 0) {
+	 * alturaPieza = Math.min(alturaPieza, i); if (Taulell[i - alturaPieza][j] == 0)
+	 * { Taulell[i - alturaPieza][j] = Pieza[i][j]; } else { posible = false; } } }
+	 * } return posible; }
+	 */
 
 	public static void BajarPieza(int[][] Taulell) {
-		
+
 	}
 
 	public static boolean FerCaureLaPieza(int[][] Pieza, int[][] Taulell) {
 		boolean imposible = PonerPieza(Pieza, Taulell);
-		
+
 		return imposible;
 	}
 }

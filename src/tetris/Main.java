@@ -68,7 +68,6 @@ public class Main {
 			ControlPieza.NovaPieza(Pieza);
 			ControlPieza.MourePiezaCostats(Pieza,Taulell);
 			finalPartida = ControlPieza.FerCaureLaPieza(Pieza, Taulell);
-			ControlPieza.EliminarFila(Taulell, amplada, alcada);
 
 		}
 		System.out.println("Fi de la partida");
